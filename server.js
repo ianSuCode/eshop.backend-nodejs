@@ -1,9 +1,16 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
 const logger = require('./utils/logger')
 const errorHandler = require('./middleware/errorHandler')
+const connectDB = require('./config/connectDB')
+const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3500
+
+console.log(process.env.NODE_ENV)
+
+connectDB()
 
 app.use(express.static('public'))
 
@@ -32,6 +39,12 @@ app.all('*', (req, res) => {
 
 app.use(errorHandler)
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB')
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+})
+
+mongoose.connection.on('error', err => {
+  console.error(err)
+  logger.writeError(err)
 })
