@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+require('express-async-errors') // catch errors without using try/catch blocks
 const app = express()
 const path = require('path')
 const logger = require('./utils/logger')
@@ -14,7 +15,10 @@ connectDB()
 
 app.use(express.static('public'))
 
+app.use(express.json())
+
 app.use('/', require('./routes/root'))
+app.use('/api/user', require('./routes/userRoute'))
 
 app.get('/hello', (req, res) => {
   logger.writeInfo('GET /hello')

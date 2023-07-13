@@ -1,4 +1,5 @@
 require('dotenv').config()
+const bcrypt = require('bcrypt')
 
 const connectDB = require('../config/connectDB')
 const User = require('../models/User')
@@ -8,16 +9,16 @@ const products = require('./productData.json')
 
 connectDB()
 
-const userAdmin = {
-  email: 'admin@iansucode.com',
-  password: '0000',
-  roles: ['User', 'Admin'],
-  active: true
-}
-
-
 const importData = async () => {
   try {
+    const hashedPwd = await bcrypt.hash('admin', 10)
+    const userAdmin = {
+      email: 'admin@iansucode.com',
+      password: hashedPwd,
+      roles: ['User', 'Admin'],
+      active: true
+    }
+
     await User.deleteMany({})
     await User.create(userAdmin)
 
