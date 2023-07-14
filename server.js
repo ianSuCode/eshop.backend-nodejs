@@ -19,6 +19,7 @@ app.get('/api/hello', (req, res) =>
 )
 
 app.use('/api/user', require('./routes/userRoute'))
+app.use('/api/product', require('./routes/productRoute'))
 
 app.all('*', (req, res) => res.status(404).json({ message: '404 Not Found' }))
 
