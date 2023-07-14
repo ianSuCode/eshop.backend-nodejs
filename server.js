@@ -24,6 +24,7 @@ app.get('/api/hello', (req, res) =>
 app.use('/api/auth', require('./routes/authRoute'))
 app.use('/api/user', require('./routes/userRoute'))
 app.use('/api/product', require('./routes/productRoute'))
+app.use('/api/cart', require('./routes/cartRoute'))
 
 app.all('*', (req, res) => res.status(404).json({ message: '404 Not Found' }))
 

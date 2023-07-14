@@ -13,8 +13,7 @@ const cartSchema = new mongoose.Schema(
       required: true
     },
     count: {
-      type: String,
-      required: true
+      type: Number
     }
   },
   {
