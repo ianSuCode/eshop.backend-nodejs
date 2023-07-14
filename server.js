@@ -4,6 +4,7 @@ require('express-async-errors') // catch errors without using try/catch blocks
 const app = express()
 const { writeInfo, writeError } = require('./utils/logger')
 const errorHandler = require('./middleware/errorHandler')
+const cookieParser = require('cookie-parser')
 const connectDB = require('./config/connectDB')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3500
@@ -14,10 +15,13 @@ connectDB()
 
 app.use(express.json())
 
+app.use(cookieParser())
+
 app.get('/api/hello', (req, res) =>
   res.json({ message: 'Hello iansucode.eshop.backend-nodejs!' })
 )
 
+app.use('/api/auth', require('./routes/authRoute'))
 app.use('/api/user', require('./routes/userRoute'))
 app.use('/api/product', require('./routes/productRoute'))
 
