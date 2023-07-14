@@ -2,8 +2,7 @@ require('dotenv').config()
 const express = require('express')
 require('express-async-errors') // catch errors without using try/catch blocks
 const app = express()
-const path = require('path')
-const logger = require('./utils/logger')
+const { writeInfo, writeError } = require('./utils/logger')
 const errorHandler = require('./middleware/errorHandler')
 const connectDB = require('./config/connectDB')
 const mongoose = require('mongoose')
@@ -13,42 +12,26 @@ console.log(process.env.NODE_ENV)
 
 connectDB()
 
-app.use(express.static('public'))
-
 app.use(express.json())
 
-app.use('/', require('./routes/root'))
+app.get('/api/hello', (req, res) =>
+  res.json({ message: 'Hello iansucode.eshop.backend-nodejs!' })
+)
+
 app.use('/api/user', require('./routes/userRoute'))
 
-app.get('/hello', (req, res) => {
-  logger.writeInfo('GET /hello')
-  res.send('Hello iansucode.eshop.backend-nodejs!')
-})
-
-app.get('/broken', (req, res) => {
-  throw new Error('BROKEN')
-})
-
-app.all('*', (req, res) => {
-  logger.writeWarn(`404: ${req.method} ${req.url}`)
-  res.status(404)
-  if (req.accepts('html')) {
-    res.sendFile(path.join(__dirname, 'views', '404.html'))
-  } else if (req.accepts('json')) {
-    res.json({ message: '404 Not Found' })
-  } else {
-    res.type('text', '404 Not Found')
-  }
-})
+app.all('*', (req, res) => res.status(404).json({ message: '404 Not Found' }))
 
 app.use(errorHandler)
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB')
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+  const message = `Server running on port ${PORT}`
+  app.listen(PORT, () => console.log(message))
+  writeInfo(message)
 })
 
-mongoose.connection.on('error', err => {
+mongoose.connection.on('error', (err) => {
   console.error(err)
-  logger.writeError(err)
+  writeError(err)
 })
