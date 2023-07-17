@@ -12,7 +12,7 @@ const getAccessToken = (user) => {
       }
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: '10m' }
+    { expiresIn: '15m' }
   )
 }
 
@@ -38,7 +38,7 @@ const login = async (req, res) => {
   const refreshToken = jwt.sign(
     { email: foundUser.email },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: '1d' }
+    { expiresIn: '7d' }
   )
 
   // Create secure cookie with refresh token
@@ -46,7 +46,7 @@ const login = async (req, res) => {
     httpOnly: true, //accessible only by web server
     secure: true, //https
     sameSite: 'None', //cross-site cookie
-    maxAge: 1 * 24 * 60 * 60 * 1000 //cookie expiry: set to match expiresIn of refreshToken
+    maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match expiresIn of refreshToken
   })
 
   // Send accessToken containing email and roles
