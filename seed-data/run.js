@@ -3,11 +3,13 @@ const bcrypt = require('bcrypt')
 
 const connectDB = require('../config/connectDB')
 const User = require('../models/User')
+const Category = require('../models/Category')
 const Product = require('../models/Product')
 
-const products = require('./productData.json')
+const categoryData = require('./categoryData.json')
+let productData = require('./productData.json')
 
-connectDB()
+connectDB(() => console.log('Start seeding data'))
 
 const importData = async () => {
   try {
@@ -22,8 +24,22 @@ const importData = async () => {
     await User.deleteMany({})
     await User.create(userAdmin)
 
+    await Category.deleteMany({})
+    const categories = await Category.insertMany(categoryData)
+    const categoryMap = {}
+    categories.forEach((c) => {
+      categoryMap[c.name] = c.id
+    })
+    console.log('categoryMap', categoryMap)
+
+    productData = productData.map((p) => {
+      const { category, ...newObject } = p
+      newObject['categoryId'] = categoryMap[category]
+      return newObject
+    })
+
     await Product.deleteMany({})
-    await Product.insertMany(products)
+    await Product.insertMany(productData)
 
     console.log('Seed Data Import Success')
 

@@ -1,7 +1,7 @@
 const Product = require('../models/Product')
 
-const getAllProducts = async (req, res) => {
-  const products = await Product.find().lean()
+const getProducts = async (req, res) => {
+  const products = await Product.find(req.query).lean().exec()
 
   if (!products?.length) {
     return res.status(400).json({ message: 'No products found' })
@@ -19,6 +19,6 @@ const getProductById = async (req, res) => {
 }
 
 module.exports = {
-  getAllProducts,
-  getProductById
+  getProducts,
+  getProductById,
 }

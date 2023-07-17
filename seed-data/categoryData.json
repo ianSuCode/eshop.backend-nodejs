@@ -1,0 +1,6 @@
+[
+  { "name": "Armour", "available": true },
+  { "name": "Shield", "available": true },
+  { "name": "Weapon", "available": true },
+  { "name": "Item", "available": true }
+]
