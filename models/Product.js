@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const idTransformPlugin = require('../utils/idTransformPlugin')
 
 const productSchema = mongoose.Schema({
   name: {
@@ -26,5 +27,7 @@ const productSchema = mongoose.Schema({
     type: String
   }
 })
+
+productSchema.plugin(idTransformPlugin)
 
 module.exports = mongoose.model('product', productSchema)

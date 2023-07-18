@@ -1,7 +1,7 @@
 const Category = require('../models/Category')
 
 const getCategories = async (req, res) => {
-  const categories = await Category.find().lean().exec()
+  const categories = await Category.find()
 
   if (!categories?.length) {
     return res.status(400).json({ message: 'No categories found' })
@@ -11,5 +11,5 @@ const getCategories = async (req, res) => {
 }
 
 module.exports = {
-  getCategories,
+  getCategories
 }

@@ -1,7 +1,7 @@
 const Product = require('../models/Product')
 
 const getProducts = async (req, res) => {
-  const products = await Product.find(req.query).lean().exec()
+  const products = await Product.find(req.query)
 
   if (!products?.length) {
     return res.status(400).json({ message: 'No products found' })
