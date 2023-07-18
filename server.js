@@ -10,10 +10,7 @@ const PORT = process.env.PORT || 3500
 
 console.log(process.env.NODE_ENV)
 
-connectDB(() => {
-  const message = `Server running on port ${PORT}`
-  app.listen(PORT, () => console.log(message))
-})
+app.use(express.static('public')) // for image, ex: http://localhost:3000/image/dq/Plain_Clothes.png
 
 app.use(cors())
 
@@ -34,3 +31,8 @@ app.use('/api/cart', require('./routes/cartRoute'))
 app.all('*', (req, res) => res.status(404).json({ message: '404 Not Found' }))
 
 app.use(errorHandler)
+
+connectDB(() => {
+  const message = `Server running on port ${PORT}`
+  app.listen(PORT, () => console.log(message))
+})
