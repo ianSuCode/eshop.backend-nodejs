@@ -2,18 +2,16 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const getAccessToken = (user) => {
-  return jwt.sign(
-    {
-      UserInfo: {
-        id: user.id,
-        email: user.email,
-        roles: user.roles
-      }
-    },
-    process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: '15m' }
-  )
+const createUserInfo = (user) => ({
+  id: user.id,
+  email: user.email,
+  roles: user.roles
+})
+
+const getAccessToken = (userInfo) => {
+  return jwt.sign({ UserInfo: userInfo }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: '15m'
+  })
 }
 
 const login = async (req, res) => {
@@ -33,7 +31,8 @@ const login = async (req, res) => {
 
   if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
-  const accessToken = getAccessToken(foundUser)
+  const userInfo = createUserInfo(foundUser)
+  const accessToken = getAccessToken(userInfo)
 
   const refreshToken = jwt.sign(
     { email: foundUser.email },
@@ -50,7 +49,7 @@ const login = async (req, res) => {
   })
 
   // Send accessToken containing email and roles
-  res.json({ accessToken })
+  res.json({ accessToken, userInfo })
 }
 
 const refresh = (req, res) => {
@@ -70,9 +69,10 @@ const refresh = (req, res) => {
 
       if (!foundUser) return res.status(401).json({ message: 'Unauthorized' })
 
-      const accessToken = getAccessToken(foundUser)
+      const userInfo = createUserInfo(foundUser)
+      const accessToken = getAccessToken(userInfo)
 
-      res.json({ accessToken })
+      res.json({ accessToken, userInfo })
     }
   )
 }
