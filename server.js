@@ -6,14 +6,13 @@ const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const connectDB = require('./config/connectDB')
-const corsOption = require('./config/corsOption')
 const PORT = process.env.PORT || 3500
 
 console.log(process.env.NODE_ENV)
 
 app.use(express.static('public')) // for image, ex: http://localhost:3000/image/dq/Plain_Clothes.png
 
-app.use(cors(corsOption))
+app.use(cors())
 
 app.use(express.json())
 

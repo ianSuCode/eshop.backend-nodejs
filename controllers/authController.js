@@ -9,7 +9,7 @@ const createUserInfo = (user) => ({
 })
 
 const getAccessToken = (userInfo) => {
-  return jwt.sign({ UserInfo: userInfo }, process.env.ACCESS_TOKEN_SECRET, {
+  return jwt.sign({ UserInfo: userInfo }, process.env.JWT_SECRET, {
     expiresIn: '15m'
   })
 }
@@ -34,58 +34,23 @@ const login = async (req, res) => {
   const userInfo = createUserInfo(foundUser)
   const accessToken = getAccessToken(userInfo)
 
-  const refreshToken = jwt.sign(
-    { email: foundUser.email },
-    process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: '7d' }
-  )
-
-  // Create secure cookie with refresh token
-  res.cookie('jwt', refreshToken, {
-    httpOnly: true, //accessible only by web server
-    secure: true, //https
-    sameSite: 'None', //cross-site cookie
-    maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match expiresIn of refreshToken
-  })
-
-  // Send accessToken containing email and roles
   res.json({ accessToken, userInfo })
 }
 
-const refresh = (req, res) => {
-  const cookies = req.cookies // app.use(cookieParser())
+const getUserInfo = (req, res) => {
+  jwt.verify(req.params.jwt, process.env.JWT_SECRET, async (err, decoded) => {
+    if (err) return res.status(403).json({ message: 'Forbidden' })
+    const { id, email } = decoded.UserInfo
+    const foundUser = await User.findOne({ _id: id, email }).exec()
 
-  if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
+    if (!foundUser) return res.status(401).json({ message: 'Unauthorized' })
 
-  const refreshToken = cookies.jwt
-
-  jwt.verify(
-    refreshToken,
-    process.env.REFRESH_TOKEN_SECRET,
-    async (err, decoded) => {
-      if (err) return res.status(403).json({ message: 'Forbidden' })
-
-      const foundUser = await User.findOne({ email: decoded.email }).exec()
-
-      if (!foundUser) return res.status(401).json({ message: 'Unauthorized' })
-
-      const userInfo = createUserInfo(foundUser)
-      const accessToken = getAccessToken(userInfo)
-
-      res.json({ accessToken, userInfo })
-    }
-  )
-}
-
-const logout = (req, res) => {
-  const cookies = req.cookies
-  if (!cookies?.jwt) return res.sendStatus(204) //No content
-  res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
-  res.json({ message: 'Cookie cleared' })
+    const userInfo = createUserInfo(foundUser)
+    res.json(userInfo)
+  })
 }
 
 module.exports = {
   login,
-  refresh,
-  logout
+  getUserInfo
 }
