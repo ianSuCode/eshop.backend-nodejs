@@ -30,7 +30,6 @@ const importData = async () => {
     categories.forEach((c) => {
       categoryMap[c.name] = c.id
     })
-    console.log('categoryMap', categoryMap)
 
     productData = productData.map((p) => {
       const { category, ...newObject } = p

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const idTransformPlugin = require('../utils/idTransformPlugin')
 
 const productSchema = mongoose.Schema({
@@ -7,7 +8,7 @@ const productSchema = mongoose.Schema({
     required: true
   },
   categoryId: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'category',
     required: true
   },
@@ -16,10 +17,6 @@ const productSchema = mongoose.Schema({
     required: true
   },
   price: {
-    type: Number,
-    required: true
-  },
-  countInStock: {
     type: Number,
     required: true
   },

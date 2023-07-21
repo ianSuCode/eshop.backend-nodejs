@@ -11,7 +11,7 @@ const getProducts = async (req, res) => {
 }
 
 const getProductById = async (req, res) => {
-  const product = await Product.findById(req.params.id).lean().exec()
+  const product = await Product.findById(req.params.id)
   if (!product) {
     return res.status(400).json({ message: 'Product not found' })
   }
@@ -20,5 +20,5 @@ const getProductById = async (req, res) => {
 
 module.exports = {
   getProducts,
-  getProductById,
+  getProductById
 }

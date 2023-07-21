@@ -4,7 +4,6 @@
     "category": "Armour",
     "price": 20,
     "description": "An outfit woven from thick, sturdy thread",
-    "countInStock": 50,
     "imageUrl": "image/dq/Plain_Clothes.png"
   },
   {
@@ -12,7 +11,6 @@
     "category": "Armour",
     "price": 70,
     "description": "Warrior's clothes made from tanned animal skins.",
-    "countInStock": 50,
     "imageUrl": "image/dq/Leather_Armour.png"
   },
   {
@@ -20,7 +18,6 @@
     "category": "Armour",
     "price": 300,
     "description": "Made from interlocking loops of sturdy steel.",
-    "countInStock": 30,
     "imageUrl": "image/dq/Chain_Mail.png"
   },
   {
@@ -28,7 +25,6 @@
     "category": "Armour",
     "price": 1000,
     "description": "Armour favored by the knights of Tantegel.",
-    "countInStock": 30,
     "imageUrl": "image/dq/Iron_Armour.png"
   },
   {
@@ -36,7 +32,6 @@
     "category": "Armour",
     "price": 3000,
     "description": "A peerlessly protective suit of armour.",
-    "countInStock": 5,
     "imageUrl": "image/dq/Full_Plate_Armour.png"
   },
   {
@@ -44,7 +39,6 @@
     "category": "Armour",
     "price": 7700,
     "description": "Restores HP while you walk.",
-    "countInStock": 5,
     "imageUrl": "image/dq/Magic_Armour.png"
   },
   {
@@ -52,7 +46,6 @@
     "category": "Shield",
     "price": 90,
     "description": "A light shield of simple construction.",
-    "countInStock": 55,
     "imageUrl": "image/dq/Leather_Shield.png"
   },
   {
@@ -60,7 +53,6 @@
     "category": "Shield",
     "price": 800,
     "description": "A large, sturdy shield of solid iron.",
-    "countInStock": 5,
     "imageUrl": "image/dq/Iron_Shield.png"
   },
   {
@@ -68,7 +60,6 @@
     "category": "Shield",
     "price": 14800,
     "description": "A shield made of purest beaten silver.",
-    "countInStock": 5,
     "imageUrl": "image/dq/SilverShield.png"
   },
   {
@@ -76,7 +67,6 @@
     "category": "Weapon",
     "price": 10,
     "description": "A long spear made of bamboo.",
-    "countInStock": 35,
     "imageUrl": "image/dq/Bamboo_Lance.png"
   },
   {
@@ -84,7 +74,6 @@
     "category": "Weapon",
     "price": 60,
     "description": "A weapon hewn from a stout log.",
-    "countInStock": 5,
     "imageUrl": "image/dq/OakenClub.png"
   },
   {
@@ -92,7 +81,6 @@
     "category": "Weapon",
     "price": 180,
     "description": "A sturdy sword of copper.",
-    "countInStock": 5,
     "imageUrl": "image/dq/Copper_Sword.png"
   },
   {
@@ -100,7 +88,6 @@
     "category": "Weapon",
     "price": 560,
     "description": "Can fell feebler foes with a single swing.",
-    "countInStock": 5,
     "imageUrl": "image/dq/IronAxe.png"
   },
   {
@@ -108,7 +95,6 @@
     "category": "Weapon",
     "price": 1500,
     "description": "Slices through enemies like a knife through butter.",
-    "countInStock": 5,
     "imageUrl": "image/dq/SteelBroadsword.png"
   },
   {
@@ -116,7 +102,6 @@
     "category": "Weapon",
     "price": 9800,
     "description": "Useful in battle, and not only when wielded...",
-    "countInStock": 2,
     "imageUrl": "image/dq/Flame_Sword.png"
   },
   {
@@ -124,7 +109,6 @@
     "category": "Item",
     "price": 20,
     "description": "A talisman carved from the scale of a dragon.",
-    "countInStock": 5,
     "imageUrl": "image/dq/DragonScaleArt.png"
   },
   {
@@ -132,7 +116,6 @@
     "category": "Item",
     "price": 38,
     "description": "It is used to avoid random encounters",
-    "countInStock": 5,
     "imageUrl": "image/dq/HolyWaterArt.png"
   },
   {
@@ -140,7 +123,6 @@
     "category": "Item",
     "price": 24,
     "description": "Restores 20-35 HP.",
-    "countInStock": 5,
     "imageUrl": "image/dq/Medicinal_Herb.png"
   },
   {
@@ -148,7 +130,6 @@
     "category": "Item",
     "price": 8,
     "description": "Lights up the darkness of dungeons.",
-    "countInStock": 5,
     "imageUrl": "image/dq/Torch.png"
   },
   {
@@ -156,7 +137,6 @@
     "category": "Item",
     "price": 70,
     "description": "?",
-    "countInStock": 0,
     "imageUrl": "image/dq/Chimaera_Wing.png"
   }
 ]
