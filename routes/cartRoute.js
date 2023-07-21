@@ -10,6 +10,6 @@ router.route('/')
   .get(cartController.getCartProducts)
   .post(cartController.createOrUpdateToCart)
 
-router.route('/:id').delete(cartController.deleteCart)
+router.route('/remove-product/:productid').delete(cartController.deleteByProductid)
 
 module.exports = router

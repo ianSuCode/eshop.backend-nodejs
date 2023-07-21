@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const idTransformPlugin = require('../utils/idTransformPlugin')
+
 const cartSchema = new mongoose.Schema(
   {
     userId: {
@@ -20,5 +22,14 @@ const cartSchema = new mongoose.Schema(
     timestamps: true
   }
 )
+
+cartSchema.plugin(idTransformPlugin)
+
+cartSchema.virtual('product', {
+  ref: 'product',
+  localField: 'productId', 
+  foreignField: '_id',
+  justOne: true 
+});
 
 module.exports = mongoose.model('cart', cartSchema)

@@ -2,9 +2,8 @@ const Cart = require('../models/Cart')
 
 const getCartProducts = async (req, res) => {
   const carts = await Cart.find({ userId: req.UserInfo.id })
-    .populate('productId', 'name category price imageUrl')
-    .lean()
-    .exec()
+    .populate('product', 'id name categoryId description price imageUrl')
+    .select('-createdAt -updatedAt -userId')
   res.json(carts)
 }
 
@@ -19,13 +18,13 @@ const createOrUpdateToCart = async (req, res) => {
   res.status(201).json({ status: 'ok' })
 }
 
-const deleteCart = async (req, res) => {
-  await Cart.findByIdAndRemove(req.params.id)
+const deleteByProductid = async (req, res) => {
+  await Cart.findOneAndDelete({productId: req.params.productid})
   res.status(200).json({status: 'ok'})
 }
 
 module.exports = {
   getCartProducts,
   createOrUpdateToCart,
-  deleteCart
+  deleteByProductid
 }
