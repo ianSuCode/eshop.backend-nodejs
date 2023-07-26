@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const idTransformPlugin = require('../utils/idTransformPlugin')
+
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -24,5 +26,7 @@ const userSchema = new mongoose.Schema(
     timestamps: true
   }
 )
+
+userSchema.plugin(idTransformPlugin)
 
 module.exports = mongoose.model('user', userSchema)

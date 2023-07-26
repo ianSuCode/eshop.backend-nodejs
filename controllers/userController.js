@@ -2,7 +2,7 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt')
 
 const getAllUsers = async (req, res) => {
-  const users = await User.find().select('-password').lean() // .select('-password'): do not return the password field
+  const users = await User.find().select('-password') // .select('-password'): do not return the password field
   if (!users?.length) {
     return res.status(400).json({ message: 'No users found' })
   }
