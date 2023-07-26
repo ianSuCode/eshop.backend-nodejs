@@ -23,8 +23,14 @@ const deleteByProductid = async (req, res) => {
   res.status(200).json({status: 'ok'})
 }
 
+const clear = async(req, res) => {
+  await Cart.deleteMany({ userId: req.UserInfo.id })
+  res.status(200).json({status: 'ok'})
+}
+
 module.exports = {
   getCartProducts,
   createOrUpdateToCart,
-  deleteByProductid
+  deleteByProductid,
+  clear
 }
