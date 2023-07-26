@@ -1,2 +1,5 @@
 # eshop.backend-nodejs
-restapi, node, express, mongodb, jwt
+A backend restapi created by node.js + express
++ Mongo DB
++ JWT
++ Roles and Permissions
