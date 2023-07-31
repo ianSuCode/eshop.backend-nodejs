@@ -35,39 +35,6 @@ const createNewUser = async (req, res) => {
   }
 }
 
-const updateUser = async (req, res) => {
-  const { id, email, password, roles, active } = req.body
-  if (
-    !id ||
-    !email ||
-    !Array.isArray(roles) ||
-    !roles.length ||
-    typeof active !== 'boolean'
-  ) {
-    return res.status(400).json({ message: 'All fields are required' })
-  }
-
-  const user = await User.findById(id).exec()
-
-  if (!user) {
-    return res.status(400).json({ message: 'User not found' })
-  }
-
-  if (user.email !== email) {
-    return res.status(400).json({ message: 'id and email did not match' })
-  }
-
-  user.roles = roles
-  user.active = active
-  if (password) {
-    user.password = await bcrypt.hash(password, 10)
-  }
-
-  const updatedUser = await user.save()
-
-  res.json({ message: `${updatedUser.email} updated` })
-}
-
 const deleteUser = async (req, res) => {
   const { id } = req.body
   if (!id) {
@@ -87,9 +54,26 @@ const deleteUser = async (req, res) => {
   res.json(reply)
 }
 
+const updateUserActive = async (req, res) => {
+  const { id, active } = req.body
+  if (!id) {
+    return res.status(400).json({ message: 'User ID Required' })
+  }
+
+  const user = await User.findById(id).exec()
+
+  if (!user) {
+    return res.status(400).json({ messaage: 'User not found' })
+  }
+
+  user.active = active
+  const updatedUser = await user.save()
+  res.json({ message: `${updatedUser.email} active updated to ${active}` })
+}
+
 module.exports = {
   getAllUsers,
   createNewUser,
-  updateUser,
-  deleteUser
+  deleteUser,
+  updateUserActive
 }
