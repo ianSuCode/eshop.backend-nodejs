@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const idTransformPlugin = require('../utils/idTransformPlugin')
 
-const cartSchema = new mongoose.Schema(
+const orderSchema = mongoose.Schema(
   {
     userId: {
       type: mongoose.Types.ObjectId,
@@ -16,6 +16,9 @@ const cartSchema = new mongoose.Schema(
     },
     count: {
       type: Number
+    },
+    state: { // new -> processing -> shipping -> done
+      type: String
     }
   },
   {
@@ -23,13 +26,13 @@ const cartSchema = new mongoose.Schema(
   }
 )
 
-cartSchema.plugin(idTransformPlugin)
+orderSchema.plugin(idTransformPlugin)
 
-cartSchema.virtual('product', {
+orderSchema.virtual('product', {
   ref: 'product',
   localField: 'productId', 
   foreignField: '_id',
   justOne: true 
 });
 
-module.exports = mongoose.model('cart', cartSchema)
+module.exports = mongoose.model('order', orderSchema)

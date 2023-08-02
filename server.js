@@ -27,6 +27,7 @@ app.use('/api/user', require('./routes/userRoute'))
 app.use('/api/product', require('./routes/productRoute'))
 app.use('/api/category', require('./routes/categoryRoute'))
 app.use('/api/cart', require('./routes/cartRoute'))
+app.use('/api/order', require('./routes/orderRoute'))
 
 app.all('*', (req, res) => res.status(404).json({ message: '404 Not Found' }))
 
