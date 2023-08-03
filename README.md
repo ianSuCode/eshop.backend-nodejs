@@ -4,7 +4,7 @@ A backend restapi created by Node.js + Express
 + JWT
 + Roles and Permissions (Only users with the 'Admin' role can access/administer the 'admin' function.)
 
-# Feature
+## Feature
 + User Registration: Backend API for registering new users.
 + Middleware:
   + Global Error Handling: Captures Express errors and handles them appropriately.
