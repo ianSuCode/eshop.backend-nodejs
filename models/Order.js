@@ -17,7 +17,7 @@ const orderSchema = mongoose.Schema(
     count: {
       type: Number
     },
-    state: { // new -> processing -> shipping -> done
+    state: { // new -> processing -> shipping -> done; cancel
       type: String
     }
   },
@@ -27,6 +27,13 @@ const orderSchema = mongoose.Schema(
 )
 
 orderSchema.plugin(idTransformPlugin)
+
+orderSchema.virtual('user', {
+  ref: 'user',
+  localField: 'userId', 
+  foreignField: '_id',
+  justOne: true 
+});
 
 orderSchema.virtual('product', {
   ref: 'product',
