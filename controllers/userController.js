@@ -2,11 +2,38 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt')
 
 const getAllUsers = async (req, res) => {
-  const users = await User.find().select('-password') // .select('-password'): do not return the password field
-  if (!users?.length) {
-    return res.status(400).json({ message: 'No users found' })
-  }
-  res.json(users)
+  const result = await User.aggregate([
+    {
+      $lookup: {
+        from: 'orders', // The name of the "orders" collection in the database
+        localField: '_id', // Field from the "users" collection to match with the "userId" in the "orders" collection
+        foreignField: 'userId', // Field from the "orders" collection to match with the "_id" in the "users" collection
+        pipeline: [
+          {
+            $project: {
+              _id: 0,
+              id: '$_id', // Include the _id field and rename to id
+              state: 1
+            }
+          }
+        ],
+        as: 'orders' // The field name to store the matched orders
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        id: '$_id',
+        email: 1,
+        roles: 1,
+        createdAt: 1,
+        active: 1,
+        orders: 1
+      }
+    }
+  ])
+
+  res.json(result)
 }
 
 const createNewUser = async (req, res) => {
@@ -36,7 +63,7 @@ const createNewUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-  const { id } = req.body
+  const { id } = req.params
   if (!id) {
     return res.status(400).json({ message: 'User ID Required' })
   }
@@ -47,11 +74,9 @@ const deleteUser = async (req, res) => {
     return res.status(400).json({ messaage: 'User not found' })
   }
 
-  const result = await user.deleteOne()
+  await user.deleteOne()
 
-  const reply = `${result.email} with ID ${result._id} deleted`
-
-  res.json(reply)
+  res.status(200).json({ message: 'success' })
 }
 
 const updateUserActive = async (req, res) => {

@@ -6,10 +6,6 @@ const adminOnly = require('../middleware/adminOnly')
 
 router
   .route('/')
-  .get([verifyJWT, adminOnly], userController.getAllUsers)
   .post(userController.createNewUser)
-  .delete([verifyJWT, adminOnly], userController.deleteUser)
-
-router.patch('/active', [verifyJWT, adminOnly], userController.updateUserActive)
 
 module.exports = router
