@@ -2,6 +2,8 @@ require('dotenv').config()
 const bcrypt = require('bcrypt')
 
 const connectDB = require('../config/connectDB')
+const CartItem = require('../models/CartItem')
+const Order = require('../models/Order')
 const User = require('../models/User')
 const Category = require('../models/Category')
 const Product = require('../models/Product')
@@ -13,9 +15,12 @@ connectDB(() => console.log('Start seeding data'))
 
 const importData = async () => {
   try {
-    const hashedPwd = await bcrypt.hash('admin', 10)
+    await CartItem.deleteMany({})
+    await Order.deleteMany({})
+
+    const hashedPwd = await bcrypt.hash('0000', 10)
     const userAdmin = {
-      email: 'admin@iansucode.com',
+      email: 'iansucode@mail.com',
       password: hashedPwd,
       roles: ['User', 'Admin'],
       active: true
