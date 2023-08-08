@@ -1,4 +1,6 @@
 const User = require('../models/User')
+const Order = require('../models/Order')
+const CartItem = require('../models/CartItem')
 const bcrypt = require('bcrypt')
 
 const getAllUsers = async (req, res) => {
@@ -73,6 +75,10 @@ const deleteUser = async (req, res) => {
   if (!user) {
     return res.status(400).json({ messaage: 'User not found' })
   }
+
+  // clear carts and orders
+  await CartItem.deleteMany({ userId: user.id })
+  await Order.deleteMany({ userId: user.id })
 
   await user.deleteOne()
 
