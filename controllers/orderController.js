@@ -67,7 +67,7 @@ const getAllOrders = async (req, res) => {
 }
 
 const createOrders = async (req, res) => {
-  const { productIds } = req.body
+  const productIds = req.body
   const carts = await CartItem.find({ productId: { $in: productIds } })
     .lean()
     .exec()
