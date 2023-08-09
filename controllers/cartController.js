@@ -3,7 +3,7 @@ const Product = require('../models/Product')
 
 const getItems = async (req, res) => {
   const carts = await CartItem.find({ userId: req.UserInfo.id })
-    .populate('product', 'id name categoryId description price imageUrl')
+    .populate('product', 'id name categoryId description price')
     .select('-createdAt -updatedAt -userId')
   res.json(carts)
 }

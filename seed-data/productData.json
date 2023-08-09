@@ -3,140 +3,120 @@
     "name": "Clothes",
     "category": "Armour",
     "price": 20,
-    "description": "An outfit woven from thick, sturdy thread",
-    "imageUrl": "image/dq/Plain_Clothes.png"
+    "description": "An outfit woven from thick, sturdy thread"
   },
   {
     "name": "Leather armour",
     "category": "Armour",
     "price": 70,
-    "description": "Warrior's clothes made from tanned animal skins.",
-    "imageUrl": "image/dq/Leather_Armour.png"
+    "description": "Warrior's clothes made from tanned animal skins."
   },
   {
     "name": "Chain mail",
     "category": "Armour",
     "price": 300,
-    "description": "Made from interlocking loops of sturdy steel.",
-    "imageUrl": "image/dq/Chain_Mail.png"
+    "description": "Made from interlocking loops of sturdy steel."
   },
   {
     "name": "Iron armour",
     "category": "Armour",
     "price": 1000,
-    "description": "Armour favored by the knights of Tantegel.",
-    "imageUrl": "image/dq/Iron_Armour.png"
+    "description": "Armour favored by the knights of Tantegel."
   },
   {
     "name": "Full plate armour",
     "category": "Armour",
     "price": 3000,
-    "description": "A peerlessly protective suit of armour.",
-    "imageUrl": "image/dq/Full_Plate_Armour.png"
+    "description": "A peerlessly protective suit of armour."
   },
   {
     "name": "Magic armour",
     "category": "Armour",
     "price": 7700,
-    "description": "Restores HP while you walk.",
-    "imageUrl": "image/dq/Magic_Armour.png"
+    "description": "Restores HP while you walk."
   },
   {
     "name": "Leather shield",
     "category": "Shield",
     "price": 90,
-    "description": "A light shield of simple construction.",
-    "imageUrl": "image/dq/Leather_Shield.png"
+    "description": "A light shield of simple construction."
   },
   {
     "name": "Iron shield",
     "category": "Shield",
     "price": 800,
-    "description": "A large, sturdy shield of solid iron.",
-    "imageUrl": "image/dq/Iron_Shield.png"
+    "description": "A large, sturdy shield of solid iron."
   },
   {
     "name": "Silver Shield",
     "category": "Shield",
     "price": 14800,
-    "description": "A shield made of purest beaten silver.",
-    "imageUrl": "image/dq/SilverShield.png"
+    "description": "A shield made of purest beaten silver."
   },
   {
     "name": "Bamboo lance",
     "category": "Weapon",
     "price": 10,
-    "description": "A long spear made of bamboo.",
-    "imageUrl": "image/dq/Bamboo_Lance.png"
+    "description": "A long spear made of bamboo."
   },
   {
     "name": "Oaken Club",
     "category": "Weapon",
     "price": 60,
-    "description": "A weapon hewn from a stout log.",
-    "imageUrl": "image/dq/OakenClub.png"
+    "description": "A weapon hewn from a stout log."
   },
   {
     "name": "Copper Sword",
     "category": "Weapon",
     "price": 180,
-    "description": "A sturdy sword of copper.",
-    "imageUrl": "image/dq/Copper_Sword.png"
+    "description": "A sturdy sword of copper."
   },
   {
     "name": "Iron Axe",
     "category": "Weapon",
     "price": 560,
-    "description": "Can fell feebler foes with a single swing.",
-    "imageUrl": "image/dq/IronAxe.png"
+    "description": "Can fell feebler foes with a single swing."
   },
   {
     "name": "Steel Sword",
     "category": "Weapon",
     "price": 1500,
-    "description": "Slices through enemies like a knife through butter.",
-    "imageUrl": "image/dq/SteelBroadsword.png"
+    "description": "Slices through enemies like a knife through butter."
   },
   {
     "name": "Flame Sword",
     "category": "Weapon",
     "price": 9800,
-    "description": "Useful in battle, and not only when wielded...",
-    "imageUrl": "image/dq/Flame_Sword.png"
+    "description": "Useful in battle, and not only when wielded..."
   },
   {
     "name": "Dragon's scale",
     "category": "Item",
     "price": 20,
-    "description": "A talisman carved from the scale of a dragon.",
-    "imageUrl": "image/dq/DragonScaleArt.png"
+    "description": "A talisman carved from the scale of a dragon."
   },
   {
     "name": "Fairy water",
     "category": "Item",
     "price": 38,
-    "description": "It is used to avoid random encounters",
-    "imageUrl": "image/dq/HolyWaterArt.png"
+    "description": "It is used to avoid random encounters"
   },
   {
     "name": "Herb",
     "category": "Item",
     "price": 24,
-    "description": "Restores 20-35 HP.",
-    "imageUrl": "image/dq/Medicinal_Herb.png"
+    "description": "Restores 20-35 HP."
   },
   {
     "name": "Torch",
     "category": "Item",
     "price": 8,
-    "description": "Lights up the darkness of dungeons.",
-    "imageUrl": "image/dq/Torch.png"
+    "description": "Lights up the darkness of dungeons."
   },
   {
     "name": "Wings",
     "category": "Item",
     "price": 70,
-    "description": "?",
-    "imageUrl": "image/dq/Chimaera_Wing.png"
+    "description": "?"
   }
 ]
