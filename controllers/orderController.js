@@ -83,8 +83,8 @@ const createOrders = async (req, res) => {
 
 const changeOrderState = async (req, res) => {
   try {
-    const { orderId, state } = req.body
-    const filter = { _id: orderId }
+    const { id, state } = req.body
+    const filter = { _id: id }
     const update = { $set: { state: state } }
     const options = { new: true }
     const updatedOrder = await Order.findOneAndUpdate(
