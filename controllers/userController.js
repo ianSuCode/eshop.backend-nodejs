@@ -58,7 +58,7 @@ const createNewUser = async (req, res) => {
   const user = await User.create(userObject)
 
   if (user) {
-    res.status(201).json({ message: `New user ${email} created` })
+    res.status(201).json({ status: 'success' })
   } else {
     res.status(400).json({ message: 'Invalid user data recevied' })
   }
@@ -82,7 +82,7 @@ const deleteUser = async (req, res) => {
 
   await user.deleteOne()
 
-  res.status(200).json({ message: 'success' })
+  res.status(200).json({ status: 'success' })
 }
 
 const updateUserActive = async (req, res) => {
@@ -98,8 +98,9 @@ const updateUserActive = async (req, res) => {
   }
 
   user.active = active
-  const updatedUser = await user.save()
-  res.json({ message: `${updatedUser.email} active updated to ${active}` })
+  await user.save()
+  
+  res.json({ status: 'success' })
 }
 
 module.exports = {

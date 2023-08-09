@@ -94,7 +94,7 @@ const changeOrderState = async (req, res) => {
     )
     if (updatedOrder) {
       // Successfully updated, return the newest updated data back to the user
-      res.json({ message: 'success', updatedAt: updatedOrder.updatedAt })
+      res.json({ updatedAt: updatedOrder.updatedAt })
     } else {
       res.status(404).json({ message: 'document not found.' })
     }
@@ -105,7 +105,7 @@ const changeOrderState = async (req, res) => {
 
 const deleteOrder = async (req, res) => {
   await Order.findByIdAndDelete(req.params.id)
-  res.status(200).json({ message: 'success' })
+  res.status(200).json({ status: 'success' })
 }
 
 module.exports = {
